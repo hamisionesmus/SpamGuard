@@ -15,6 +15,7 @@ from prometheus_client import make_asgi_app, Counter, Histogram
 from app.config import settings
 from app.database import create_tables
 from app.routes import api_router
+from app.routes.graphql import graphql_app
 from app.utils.logging_config import setup_logging
 
 # Setup logging
@@ -103,6 +104,9 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 # Include API routes
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+# Include GraphQL
+app.include_router(graphql_app, prefix="/graphql")
 
 # Health check endpoint
 @app.get("/health")
