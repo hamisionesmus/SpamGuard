@@ -28,6 +28,7 @@ class User(Base):
     predictions = relationship("Prediction", back_populates="user")
     api_keys = relationship("APIKey", back_populates="user")
     datasets = relationship("Dataset", back_populates="user")
+    subscriptions = relationship("Subscription", back_populates="user")
 
 
 class Role(Base):
